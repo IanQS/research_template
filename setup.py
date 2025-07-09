@@ -24,19 +24,17 @@ def change_main_import(proj_name):
         f.writelines(lines)
 
 
-def setup_conda(proj_name):
+def setup_uv_pyproject(proj_name):
     """
     Set up the conda environment name
     """
 
-    full_path = os.path.realpath(__file__)
-    path, _ = os.path.split(full_path)
-    with open(f"{path}/pyproject.toml") as f:
+    with open(f"pyproject.toml") as f:
         lines = f.readlines()
 
     lines[1] = f"name: {proj_name}\n"
 
-    with open("pyproject.toml", "a") as f:
+    with open("pyproject.toml", "w") as f:
         f.writelines(lines)
 
 
@@ -53,11 +51,14 @@ build-backend = "setuptools.build_meta"
 where = ["."]
 include = ["{proj_name}*"]
 """
+    with open("pyproject.toml", "a") as f:
+        for ln in to_write.split("\n"):
+            f.write(f"{ln}\n")
 
 
 if __name__ == "__main__":
     proj_name = input("What is the name of your project? Use '_' instead of spaces ")
     rename_folder(proj_name)
-    setup_conda(proj_name)
+    setup_uv_pyproject(proj_name)
     change_main_import(proj_name)
     append_to_pyproject(proj_name)
