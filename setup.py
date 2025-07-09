@@ -34,7 +34,7 @@ def setup_conda(proj_name):
     with open(f"{path}/pyproject.toml") as f:
         lines = f.readlines()
 
-    lines[0] = f"name: {proj_name}\n"
+    lines[1] = f"name: {proj_name}\n"
 
     with open("pyproject.toml", "w") as f:
         f.writelines(lines)
@@ -51,7 +51,7 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["proj_name*"]
+include = ["{proj_name}*"]
 """
 
 
@@ -60,3 +60,4 @@ if __name__ == "__main__":
     rename_folder(proj_name)
     setup_conda(proj_name)
     change_main_import(proj_name)
+    append_to_pyproject(proj_name)
