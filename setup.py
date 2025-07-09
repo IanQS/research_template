@@ -36,7 +36,7 @@ def setup_conda(proj_name):
 
     lines[1] = f"name: {proj_name}\n"
 
-    with open("pyproject.toml", "w") as f:
+    with open("pyproject.toml", "a") as f:
         f.writelines(lines)
 
 
