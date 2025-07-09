@@ -17,7 +17,7 @@ def change_main_import(proj_name):
         lines = f.readlines()
 
     splitted = lines[0].split()
-    splitted[1] = proj_name
+    splitted[1] = f"{proj_name}.project_paths"
     lines[0] = " ".join(splitted)
 
     with open(f"{path}/main.py", "w") as f:
