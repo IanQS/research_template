@@ -1,0 +1,17 @@
+[project]
+name = "research-template"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "basedpyright>=1.30.0",
+    "loguru>=0.7.3",
+    "marimo>=0.14.10",
+    "matplotlib>=3.10.3",
+    "pandas>=2.3.1",
+    "pdbp>=1.7.0",
+    "ruff>=0.12.2",
+    "seaborn>=0.13.2",
+    "tqdm>=4.67.1",
+]
