@@ -8,7 +8,7 @@ This contains your raw data (which you might want to add to your `.gitignore`) s
 
 ## processed_data
 
-This contains various checkpoints of the data you've made and is typically data derived from `raw`, but isn't quite ready for `modeling` just yet. I've historically used this to store the results of long-running processes that are not-quite ready for modeling. This helps me avoid needing to reconstruct the data every time
+This contains various checkpoints of the data you've made and is typically data derived from `raw`, but isn't quite ready for `modeling` just yet. I've historically used this to store the results of long-running processes that are not-quite ready for modeling. This helps me avoid needing to reconstruct the data every time.
 
 You don't need to store **every** change individually - use your best judgment.
 
