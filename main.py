@@ -1,4 +1,4 @@
-from template_folder.project_paths import DATA_DIR, RAW_DATA_DIR, PROCESSED_DATA_DIR, PLOTS_DIR
+from template_package.project_paths import DATA_DIR, RAW_DATA_DIR, PROCESSED_DATA_DIR, PLOTS_DIR
 
 
 def main():
