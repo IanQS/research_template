@@ -1,6 +1,14 @@
 # research_template
 
-A template for anyone looking to do modern python experiment research work. This was born after lots of painful lessons were learned, so hopefully it saves you time and effort
+A template for anyone looking to do modern python experiment research work. This was born after lots of painful lessons were learned, so hopefully it saves you time and effort.
+
+## Note:
+
+If you're using `flywire`, you might want to save all the data to one location and then `symlink` them, to avoid needing multiple copies of the data. Here's how you can do it, assuming that `flywire_data` is at the home directory:
+
+`ln -s /home/iq/flywire_data research/some_project/data/raw`
+
+where `iq` was my username, and the project was located in the home directory under `research/some_project`
 
 # Pre-requisites
 
@@ -26,7 +34,7 @@ This template uses the modern `src/` layout, which means your package code lives
 
 - **Core**: Minimal dependencies (marimo, tqdm) installed by default
 - **dev**: Development and debugging tools (basedpyright, ruff, pdbp, loguru)
-- **analysis**: Data analysis and visualization (matplotlib, seaborn, pandas, polars) 
+- **analysis**: Data analysis and visualization (matplotlib, seaborn, pandas, polars)
 
 # Data Leakage, Reproducibility and Versioning
 
