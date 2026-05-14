@@ -67,9 +67,10 @@ def append_to_pyproject(proj_name):
     Add build system configuration and tool settings to pyproject.toml
     """
     to_write = f"""
-[tool.basedpyright]
-include = ["src/{proj_name}/**"]
-exclude = ["src/{proj_name}.egg-info"]
+[tool.pyrefly]
+project-includes = ["src/{proj_name}/**", "experiments"]
+project-excludes = ["src/{proj_name}.egg-info","**/.[!/.]*", "**/tests" ]
+search-path = ["src", "experiments"]
 
 [build-system]
 requires = ["setuptools>=61.0", "wheel"]
@@ -78,6 +79,9 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["{proj_name}*"]
+
+[tool.marimo.language_servers.pyrefly]
+enabled = true
 """
     with open("pyproject.toml", "a") as f:
         f.write(to_write)
@@ -106,9 +110,6 @@ if __name__ == "__main__":
 
     print("\n" + "=" * 50)
     print(f"Setup complete! Next steps:")
-    print(f"  1. Run 'uv sync' to install core dependencies")
-    print(f"  2. Run 'uv sync --extra dev' to install dev tools")
-    print(f"  3. Run 'uv sync --extra analysis' to install analysis packages")
-    print(f"  4. Run 'uv sync --all-extras' to install everything")
-    print(f"  5. Run 'uv run python main.py' to test your setup")
+    print(f"  1. Run 'uv sync' to install all dependencies")
+    print(f"  2. Run 'uv run python main.py' to test your setup")
     print("=" * 50)
