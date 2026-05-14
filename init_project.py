@@ -69,8 +69,14 @@ def append_to_pyproject(proj_name):
     to_write = f"""
 [tool.pyrefly]
 project-includes = ["src/{proj_name}/**", "experiments"]
-project-excludes = ["src/{proj_name}.egg-info","**/.[!/.]*", "**/tests" ]
-search-path = ["src", "experiments"]
+project-excludes = [
+    "src/{proj_name}.egg-info",
+    "**/.[!/.]*",
+    "**/tests"
+    "**/node_modules",
+    "**/__pycache__",
+    "**/*venv/**/*",
+]
 
 [build-system]
 requires = ["setuptools>=61.0", "wheel"]
