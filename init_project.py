@@ -72,7 +72,7 @@ project-includes = ["src/{proj_name}/**", "experiments"]
 project-excludes = [
     "src/{proj_name}.egg-info",
     "**/.[!/.]*",
-    "**/tests"
+    "**/tests",
     "**/node_modules",
     "**/__pycache__",
     "**/*venv/**/*",
