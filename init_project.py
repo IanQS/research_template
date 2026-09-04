@@ -68,15 +68,15 @@ def append_to_pyproject(proj_name):
     """
     to_write = f"""
 [tool.pyrefly]
+# For import resolution
+search-path = ["src/{proj_name}**", "experiments/**"]  
+# For which files to check! 
 project-includes = ["src/{proj_name}/**", "experiments"]
 project-excludes = [
     "src/{proj_name}.egg-info",
-    "**/.[!/.]*",
     "**/tests",
-    "**/node_modules",
-    "**/__pycache__",
-    "**/*venv/**/*",
 ]
+python-interpreter-path = ".venv/bin/python3"
 
 [build-system]
 requires = ["setuptools>=61.0", "wheel"]
@@ -86,8 +86,6 @@ build-backend = "setuptools.build_meta"
 where = ["src"]
 include = ["{proj_name}*"]
 
-[tool.marimo.language_servers.pyrefly]
-enabled = true
 """
     with open("pyproject.toml", "a") as f:
         f.write(to_write)
