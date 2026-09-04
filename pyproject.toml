@@ -16,3 +16,111 @@ dependencies = [
     "tqdm>=4.67.3",
 ]
 
+[tool.pyrefly]
+# For import resolution
+#     TODO: specify the subfolder under `src` if you're hitting false positives with the `.egg_info` that will be generated
+search-path = ["src/**", "experiments/**"]  
+# For which files to check! 
+#     TODO: specify the subfolder under `src`
+project-includes = ["src/**"] # TODO: 
+project-excludes = [
+    "src/**.egg-info",  # Ignore the `.egg-info`
+]
+python-interpreter-path = ".venv/bin/python3"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["synapse_topography*"]  # TODO: specify the folder name
+
+[tool.setuptools.package-data]
+"synapse_topography.morphio" = ["*.so"]
+
+
+#######################################################
+# Marimo settings
+#######################################################
+[tool.marimo.formatting]
+line_length = 120
+
+[tool.marimo.display]
+default_width = "full"
+
+[tool.marimo.save]
+autosave = "after_delay"
+autosave_delay = 1000
+# format_on_save = true
+#
+[tool.marimo.runtime]
+output_max_bytes = 20_000_000
+# `experiments` is not part of the installed package (setuptools only picks up src/), so it is
+# importable only via the repo root on sys.path. Resolved relative to this file, so notebooks under
+# experiments/ import each other no matter which directory marimo was started from.
+pythonpath = ["."]
+
+#######################################################
+# Ruff settings
+#######################################################
+[tool.ruff]
+line-length = 120
+preview = true
+
+[tool.ruff.format]
+preview = true
+quote-style = "double"
+docstring-code-format = true
+indent-style = "space"
+skip-magic-trailing-comma = true
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "C90", # mccabe
+    "CPY", # flake8-copyright
+    "FA", # flake8-future-annotations
+    "PGH", # pygrep-hooks
+    "TD", # flake8-todos
+    "YTT", # flake8-2020
+
+    # disable these rules to use the ruff formatter.
+    "COM812", # missing-trailing-comma
+    "COM819", # prohibited-trailing-comma
+    "D100",   # Missing docstring in public module
+    "D101",   # Missing docstring in public class
+    "D103",   # Missing docstring in public function
+    "D104",   # Missing docstring in public package
+    "D206",   # docstring-tab-indentation
+    "D300",   # triple-single-quotes
+    "D400",   # First line ends with period
+    "D415",   # first line should end with a period, question mark, or exclamation
+    "DOC201", # Return not documented
+    "DTZ005",
+    "E111",   # indentation-with-invalid-multiple
+    "E114",   # indentation-with-invalid-multiple-comment
+    "E117",   # over-indented
+    "E501",   # line-too-long
+    "FBT003", # Boolean positional val in function arg
+    "Q000",   # bad-quotes-inline-string
+    "Q001",   # bad-quotes-multiline-string
+    "Q002",   # bad-quotes-docstring
+    "Q003",   # avoidable-escaped-quote
+    "S101",   # Asserts
+    "TRY300", # Consider moving this statement to an else block
+    "SIM108", # X if bla else Y
+    "W191",   # tab-indentation
+]
+task-tags = ["TODO"]
+fixable = ["ALL"]
+unfixable = [
+    "D", # Dont fix docstyle from others
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.isort]
+# The formatter drops magic trailing commas, so isort must not treat them as a split directive.
+split-on-trailing-comma = false
